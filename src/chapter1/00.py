@@ -1,9 +1,7 @@
 def main():
     s1 = "パトカー"
     s2 = "タクシー"
-    result = ""
-    for i in range(len(s1)):
-        result += s1[i] + s2[i]
+    result = "".join([a + b for a, b in zip(s1, s2)])
     print(result)
 
 
