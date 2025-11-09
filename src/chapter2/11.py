@@ -5,15 +5,15 @@ def print_head(file, n):
         line = file.readline()
         if line is None:
             break
-        print(line)
+        print(line, end='')
 
 
 def main():
     filename = sys.argv[1]
     n = int(sys.argv[2])
-    with open(filename, "r") as file:
+    with open(filename, 'r') as file:
         print_head(file, n)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
