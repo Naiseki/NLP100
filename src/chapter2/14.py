@@ -1,9 +1,8 @@
 import sys
 
 def print_head(file, n):
-    for i in range(n):
-        line = file.readline()
-        if line is None:
+    for i, line in enumerate(file):
+        if i >= n:
             break
         cols = line.split('\t')
         print(cols[0])

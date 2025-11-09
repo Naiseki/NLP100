@@ -1,9 +1,8 @@
 import sys
 
 def replace_tab(file, n):
-    for i in range(n):
-        line = file.readline()
-        if line is None:
+    for i, line in enumerate(file):
+        if i >= n:
             break
         line = line.replace('\t', ' ')
         print(line, end='')
