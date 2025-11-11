@@ -1,0 +1,26 @@
+=== Python ===
+$ uv run src/ch2/14.py input/popular-names.txt
+Mary
+Anna
+Emma
+Elizabeth
+Minnie
+Margaret
+Ida
+Alice
+Bertha
+Sarah
+
+
+=== UNIX ===
+head input/popular-names.txt | cut -f 1
+Mary
+Anna
+Emma
+Elizabeth
+Minnie
+Margaret
+Ida
+Alice
+Bertha
+Sarah

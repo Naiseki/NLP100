@@ -1,0 +1,7 @@
+=== Python ===
+$ uv run src/ch2/17.py input/popular-names.txt
+136
+
+=== UNIX ===
+$ cut -f1 input/popular-names.txt | sort | uniq | wc -l
+136

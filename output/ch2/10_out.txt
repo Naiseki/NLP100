@@ -1,0 +1,8 @@
+=== Python ===
+uv run src/ch2/10.py inupt/popular-names.txt
+2780 input/popular-names.txt
+
+
+=== UNIX ===
+$ wc -l input/popular-names.txt
+2780 input/popular-names.txt

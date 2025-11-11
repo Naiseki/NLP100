@@ -7,15 +7,15 @@ def split_file(file, n):
 
 def main():
     filename = sys.argv[1]
-    n = int(sys.argv[2])
+    n = 10
     parts = []
-    with open(filename, 'r') as file:
+    with open(filename, "r") as file:
         parts = split_file(file, n)
     for i in range(len(parts)):
-        with open(f'{filename}_{i}.txt', 'w') as out_file:
+        with open(f"{filename}_{i}.txt", "w") as out_file:
             out_file.writelines(parts[i])
             
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

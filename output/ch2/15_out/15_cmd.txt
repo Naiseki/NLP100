@@ -1,0 +1,5 @@
+=== Python ===
+$ uv run src/ch2/15.py input/popular-names.txt
+
+=== UNIX ===    
+split -n l/10 input/popular-names.txt unix_split_
