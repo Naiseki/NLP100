@@ -1,4 +1,8 @@
 === UNIX ===    
+# cut -f1: 1列目を抽出
+# sort: ソート
+# uniq -c: 連続した重複行を1行にまとめ、その出現回数を数える
+# sort -rn: 数値として降順ソート
 $ cut -f1 input/popular-names.txt | sort | uniq -c | sort -rn
 118 James
 111 William

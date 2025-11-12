@@ -1,4 +1,5 @@
 === UNIX ===
+# k3,3：3列目をキーにする, n：数値としてソート, r：降順
 $ sort -k3,3nr input/popular-names.txt
 Linda	F	99689	1947
 Linda	F	96211	1948
