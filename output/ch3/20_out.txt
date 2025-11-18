@@ -1,0 +1,159 @@
+{{ Infobox British territory
+| name_japanese = イギリス領ヴァージン諸島
+| conventional_long_name = British Virgin Islands
+| common_name = イギリス領ヴァージン諸島
+| image_flag = Flag_of_the_British_Virgin_Islands.svg
+| flag_size = 125px
+| flag_type = svg
+| flag_article_page =
+| image_symbol = Coat_of_Arms_of_the_British_Virgin_Islands.svg
+| symbol_size = 125px
+| symbol_type = svg
+| symbol_article_page =
+| motto = Vigilate
+| motto_japanese = 用心深くあれ
+| anthem_type = 国歌
+| anthem = God Save the Queen
+| anthem_japanese = [[女王陛下万歳]]
+| image_map = British Virgin Islands in its region.svg
+| map_size =
+| official_languages = [[英語]]
+| capital = [[ロードタウン]]
+| admin_center =
+| native_country =
+| monarch = [[エリザベス2世]]
+| leader_title1 = {{ill2|イギリス領ヴァージン諸島の総督|en|Governor of the Virgin Islands|label=総督}}
+| leader_name1 = {{ill2|オーガストス・ジャスペルト|en|Augustus Jaspert|label=オーガストス・ジャスペルト}}
+| leader_title2 = [[イギリス領ヴァージン諸島の副総督|副総督]]
+| leader_name2 = デイヴィッド・アーチャー (David Archer)
+| leader_title3 = [[イギリス領ヴァージン諸島の首相|首相]]
+| leader_name3 = {{ill2|アンドルー・ファヒー|en|Andrew Fahie}}
+| area_rank =
+| area_km = 153
+| area_sq_mi =
+| percent_water = 極僅か
+| population_estimate = [[1 E4|31,912]]
+| population_census =
+| population_year = [[2013年]]
+| population_rank =
+| population_density_km = 208.5
+| population_density_sq_mi =
+| population_density_rank =
+| GDP_PPP = 3億2,000万ドル
+| GDP_PPP_year = [[2002年]]
+| GDP_PPP_per_capita = 16,000ドル
+| currency = [[アメリカ合衆国ドル|USドル]]
+| currency_code =USD
+| time_zone = [[協定世界時|UTC]] -4
+| utc_offset =
+| time_zone_DST =
+| utc_offset_DST =
+| ISO 3166-1 = VG / VGB
+| cctld = [[.vg]]
+| official_website =
+| calling_code = 1-284
+| no_notice =
+}}
+'''イギリス領ヴァージン諸島'''（イギリスりょうヴァージンしょとう）は、[[カリブ海]]の[[西インド諸島]]にある[[イギリスの海外領土]]（自治領）である。[[ヴァージン諸島]]の東側半分。西側は、[[アメリカ領ヴァージン諸島]]。東には英領[[アンギラ]]がある。
+
+== 領名 ==
+正式名称は British Virgin Islands （英語: ブリティッシュ・ヴァージン・アイランズ）。略号は、'''BVI'''。
+
+日本語の表記は、'''イギリス領ヴァージン諸島'''、'''イギリス領バージン諸島'''、'''英領ヴァージン諸島'''、'''英領バージン諸島'''など。
+
+== 歴史 ==
+[[1493年]]に[[クリストファー・コロンブス]]により「発見」され、[[1648年]]に[[オランダ]]人が植民を開始したが、[[1672年]]に[[イギリス]]に併合された。
+
+== 政治 ==
+[[イギリスの海外領土]]の「第三類型」に属する。イギリス女王の代理人である[[総督]] (governor) が、本国から離れた現地において[[国家元首]]としての儀礼的職務を代行する。
+
+[[議会]]（立法機関）は、[[一院制]]で、「Legislative Assembly」と呼ばれる。全13議席で、9議席を[[小選挙区制]]選挙、4議席を[[大選挙区制]]選挙により選出する。任期は4年。[[二大政党制]]である。
+
+行政府の長である[[イギリス領ヴァージン諸島の首相|首相]] (Premier) は、議会選挙の直後、議員の中から総督によって任命される。多数派政党の党首が任命される慣例となっている。
+
+国歌はイギリスの国歌と同じである<ref>{{Cite web|url=http://www.bvi.gov.vg/national-anthem|title=National Anthem &#x007c; Government of the Virgin Islands|accessdate=2017-02-04}}</ref>が、地域歌として2013年に{{仮リンク|ああ美しきヴァージン諸島|en|Oh, Beautiful Virgin Islands}}を採択している<ref>{{Cite web|url=http://www.bvi.gov.vg/territorial-song|title=Territorial Song &#x007c; Government of the Virgin Islands|accessdate=2017-02-04}}</ref>。
+
+== 法 ==
+[[イギリス領ヴァージン諸島の法]]を参照。
+
+== 地理 ==
+[[File:GB Virgin Islands.png|thumb|right|300px|地図]]
+[[File:Roadtown, Tortola.jpg|thumb|right|250px|トルトラ島ロードタウン]]
+
+人が定住する島は16で、小さな無人島が50近くある。主な島は以下の4島:
+* [[トルトラ島 ]] (Tortola)
+* [[ヴァージン・ゴルダ島]] (Virgin Gorda)
+* [[アネガダ島]] (Anegada)
+* [[ヨスト・ヴァン・ダイク島 ]] (Jost Van Dyke)
+
+それ以外の島々は、以下の小島で少数の人が住む島もいくつかあるが、ほとんどは無人島である。
+
+* [[ノーマン島]] (Norman)
+* [[ピーター島]] (Peter)
+* [[ソルト島]] (Salt)
+* [[クーパー島 (イギリス領ヴァージン諸島)|クーパー島]] (Cooper)
+* [[ジンジャー島]] (Ginger)
+* [[フォーレン・エルサレム島]] (Fallen Jerusalem)
+* [[グレート・サッチ島]] (Great Thatch)
+* [[グレート・トバゴ島]] (Great Tobago)
+* [[リトル・サッチ島]] (Little Thatch)
+* [[フレンチマン・キー]] (Frenchman's Cay)
+* [[リトル・トバゴ島]] (Little Tobago)
+* [[リトル・ヨスト・ヴァン・ダイク島]] (Little Jost Van Dyke)
+* [[サンディ・キー]] (Sandy Cay)
+* [[グアナ島]] (Guana)
+* [[グレート・カマノウ島]] (Great Camanoe)
+* [[ビーフ島]] (Beef)
+* [[スクラブ島 (イギリス領ヴァージン諸島)|スクラブ島]] (Scrub)
+* [[グレート・ドッグ島]] (Great Dog)
+* [[リトル・ドッグ島]] (Little Dog)
+* [[モスキート島]] (Mosquito)
+* [[プリクリー・ペア島 (イギリス領ヴァージン諸島)|プリクリー・ペア島]] (Prickly Pear)
+* [[ネッカー島 (イギリス領ヴァージン諸島)|ネッカー島]] (Neckar)
+
+[[亜熱帯]]気候。[[貿易風]]の影響により、一年を通して気温は25[[℃]]から30℃辺りで安定している。
+
+ヴァージン諸島最高峰でもあるセージ山 (520m) がある。
+
+== 経済 ==
+経済は、西側の[[アメリカ領ヴァージン諸島]]と密接不可分の関係にあり、[[通貨]]も[[1959年]]以来[[アメリカ合衆国ドル]]が使用されている。産業は、国民所得の約半分を[[観光業]]に依存しており、農業用地を確保できないため、[[ラム酒]]製造や[[漁業]]が行われている。
+
+世界的な[[租税回避地]]であり、[[2010年]]9月、英国の[[シンクタンク]]により、世界第40位の[[金融センター]]と評価されている<ref>[http://www.zyen.com/GFCI/GFCI%208.pdf The Global Financial Centres Index8]</ref>。
+
+== 住民 ==
+人口の約8割は、18世紀に[[アフリカ大陸]]から[[奴隷]]として連れてこられた[[ネグロイド|黒人]]の子孫である。[[混血]]の[[ムラート]]や[[白人]]も少数いる。
+
+[[2012年]]の国勢調査によると、宗教を信仰している人の90%以上がキリスト教徒であった<ref name="ReferenceC">The BVI Beacon "Portrait of a population: 2010 Census published" pg. 6, 20 November 2014</ref>。主な宗派は[[メソジスト]] (17.6%) 、[[聖公会]] (12%) 、[[チャーチ・オブ・ゴッド]] (11%) 、[[カトリック]] (9%) など<ref name="Census 2001">{{cite web|url=http://www.caricomstats.org/Files/Publications/NCR%20Reports/BVI.pdf|title=National Population Census Report 2001 – The British Virgin Islands|publisher=[[Caribbean Community|Caribbean Community Secretariat]]|year=2009|accessdate=2012-03-07|format=PDF}}</ref>。
+
+使用言語は[[英語]]。
+
+== 交通 ==
+3つ空港がある。トルトラ島には空港はないが、すぐ隣にあるビーフ島に[[テラス・B・レットサム国際空港]]があり、トルトラ島とは橋でつながれている。ヴァージン・ゴルダ島とアネガダ島にも空港がある。
+
+イギリス領ヴァージン諸島では船の交通も良く、アメリカ領ヴァージン諸島から船で簡単に行ける。
+
+== 紋章の象徴 ==
+イギリス領ヴァージン諸島の[[紋章]]には、紀元[[4世紀]]の[[ブリタニア]]出身の[[聖人|聖女]]であり、[[ドイツ]]の[[ケルン]]の[[守護聖人]]である[[聖ウルスラ]]の絵が描かれている。またその周囲には11個のランプが装飾として描かれているが、これはウルスラと共に[[殉教]]したとされる[[伝説]]の1万1千人の乙女を象徴している（すなわち、「11 millia の乙女たち」で、ランプ一基が千人の乙女を表す）。
+
+== 著名な出身者 ==
+* [[Iyaz]] - トルトラ島出身の歌手。
+
+== 脚注 ==
+{{脚注ヘルプ}}
+{{Reflist}}
+
+== 関連項目 ==
+* [[ISO 3166-2:VG]]
+
+== 外部リンク ==
+{{commons|British Virgin Islands}}
+* [http://www.bviwelcome.com/ イギリス領ヴァージン諸島の観光局の公式HP（英語）]
+
+{{イギリスの海外領土}}
+{{アメリカ}}
+{{normdaten}}
+
+{{デフォルトソート:いきりすりよううあしんしよとう}}
+[[Category:イギリス領ヴァージン諸島|*]]
+[[Category:カリブ海の諸島]]
+[[Category:欧州連合加盟国の特別領域|元]]
