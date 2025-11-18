@@ -6,7 +6,7 @@ import re
 def find_article(stream, target_title):
     for line in stream:
         article_dict = json.loads(line)
-        if target_title in article_dict["title"]:
+        if target_title == article_dict["title"]:
             return article_dict
     return None
 

@@ -6,13 +6,13 @@ import re
 def find_article(stream, target_title):
     for line in stream:
         article_dict = json.loads(line)
-        if target_title in article_dict["title"]:
+        if target_title == article_dict["title"]:
             return article_dict
     return None
 
 def filter_category_lines(text):
     # [[Category:から始まり，|]以外の文字が続く部分をキャプチャ
-    pattern = re.compile(r'\[\[Category:([^|\]]+)', re.MULTILINE)
+    pattern = re.compile(r"\[\[Category:([^|\]]+)", re.MULTILINE)
     return pattern.findall(text)
 
 def main():
