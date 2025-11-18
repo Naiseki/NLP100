@@ -3,7 +3,7 @@ import gzip
 import json
 import re
 
-def find_title(stream, target_title):
+def find_article(stream, target_title):
     for line in stream:
         article_dict = json.loads(line)
         if target_title in article_dict["title"]:
@@ -18,7 +18,7 @@ def main():
     path = "input/jawiki-country.json.gz"
     with gzip.open(path, "rb") as file:
         target_title = "イギリス"
-        article = find_title(file, target_title)
+        article = find_article(file, target_title)
         if not article:
             print(f"'{target_title}'の記事は見つかりませんでした。")
 
