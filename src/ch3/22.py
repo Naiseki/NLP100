@@ -10,7 +10,7 @@ def find_article(stream, target_title):
             return article_dict
     return None
 
-def filter_category_lines(text):
+def extract_categories(text):
     # [[Category:から始まり，|]以外の文字が続く部分をキャプチャ
     pattern = re.compile(r"\[\[Category:([^|\]]+)", re.MULTILINE)
     return pattern.findall(text)
@@ -24,7 +24,7 @@ def main():
             print(f"'{target_title}'の記事は見つかりませんでした。")
             return
 
-        for line in filter_category_lines(article["text"]):
+        for line in extract_categories(article["text"]):
             print(line)
 
 

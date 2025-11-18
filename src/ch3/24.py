@@ -10,7 +10,7 @@ def find_article(stream, target_title):
             return article_dict
     return None
 
-def filter_category_lines(text):
+def extract_files(text):
     pattern = re.compile(r"\[\[ファイル:([^|\]]+)", re.MULTILINE)
     return pattern.findall(text)
 
@@ -23,7 +23,7 @@ def main():
             print(f"'{target_title}'の記事は見つかりませんでした。")
             return
 
-        for filename in filter_category_lines(article["text"]):
+        for filename in extract_files(article["text"]):
             print(filename)
 
 
