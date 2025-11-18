@@ -1,0 +1,31 @@
+import sys
+import gzip
+import json
+import re
+
+def find_article(stream, target_title):
+    for line in stream:
+        article_dict = json.loads(line)
+        if target_title == article_dict["title"]:
+            return article_dict
+    return None
+
+def filter_category_lines(text):
+    pattern = re.compile(r"^(={2,})\s*(.*?)\s*\1$", re.MULTILINE)
+    return pattern.findall(text)
+
+def main():
+    path = "input/jawiki-country.json.gz"
+    with gzip.open(path, "rb") as file:
+        target_title = "イギリス"
+        article = find_article(file, target_title)
+        if not article:
+            print(f"'{target_title}'の記事は見つかりませんでした。")
+            return
+
+        for eq, title in filter_category_lines(article["text"]):
+            print(f"セクション名: {title}, レベル: {len(eq) - 1}")
+
+
+if __name__ == "__main__":
+    main()
