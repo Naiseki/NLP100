@@ -21,6 +21,7 @@ def main():
         article = find_article(file, target_title)
         if not article:
             print(f"'{target_title}'の記事は見つかりませんでした。")
+            return
 
         for line in filter_category_lines(article["text"]):
             print(line)
