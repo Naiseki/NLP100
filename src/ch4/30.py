@@ -16,7 +16,7 @@ def main():
 
     tokenizer_obj = dictionary.Dictionary().create()
 
-    tokens = tokenizer_obj.tokenize(text, tokenizer.Tokenizer.SplitMode.C)
+    tokens = tokenizer_obj.tokenize(text, tokenizer.Tokenizer.SplitMode.B)
     verbs = []
     for t in tokens:
         pos = t.part_of_speech()
