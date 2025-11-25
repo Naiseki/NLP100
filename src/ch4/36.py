@@ -53,17 +53,11 @@ def main():
             cleaned_text = clean_wiki_markup(article_dict["text"])
             corpus.append(cleaned_text)
     
-    full_corpus = " ".join(corpus)
     # MeCab で形態素解析
-    try:
-        # Taggerの初期化はループの外で一度だけ行う
-        tagger = MeCab.Tagger("-Ochasen")
-    except Exception as e:
-        print("MeCab の初期化に失敗しました:", e, file=sys.stderr)
-        return
+    tagger = MeCab.Tagger("-Ochasen")
 
     words = []
-    for cleaned_text in corpus: # full_corpus ではなく、corpusリストをループ
+    for cleaned_text in corpus:
         if not cleaned_text.strip():
             continue # 空のテキストはスキップ
             
@@ -71,27 +65,19 @@ def main():
             # 記事ごとの解析
             node = tagger.parseToNode(cleaned_text) 
         except Exception as e:
-            # 個々の記事の解析に失敗しても全体は止めない
             print(f"警告: 記事の形態素解析に失敗しました: {e}", file=sys.stderr)
             continue
             
         while node:
-            if node.surface and node.feature: # node.featureのチェックも追加
-                features = node.feature.split(',')
-                # featuresが期待通りに分割されない可能性も考慮して長さチェック
-                if len(features) > 0:
-                    pos = features[0]
-                    # 主要な品詞を対象
-                    if pos in ["名詞", "動詞", "形容詞", "副詞"]:
-                        # 語幹や原型（features[6]）を使うと精度が上がるけど、ここではnode.surfaceのままで
-                        words.append(node.surface)
+            if node.surface:
+                words.append(node.surface)
             node = node.next
     
     
     word_counts = Counter(words)
     print("出現頻度の高い20語:")
     for word, count in word_counts.most_common(20):
-        print(f"{word}: {count}")
+        print(f"{word} : {count}")
 
 
 if __name__ == "__main__":
