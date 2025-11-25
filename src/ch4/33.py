@@ -17,6 +17,7 @@ def main():
     doc = nlp(text)
 
     for token in doc:
+        # head: 係り先のトークン
         if token.head != token:
             print(f"{token.text}\t{token.head.text}")
 
