@@ -6,13 +6,6 @@ from typing import Dict, Optional, TextIO
 import MeCab
 from collections import Counter
 
-def find_article(stream: TextIO, target_title: str) -> Optional[Dict[str, str]]:
-    for line in stream:
-        article_dict = json.loads(line)
-        if target_title == article_dict["title"]:
-            return article_dict
-    return None
-
 def clean_wiki_markup(value: str) -> str:
     """MediaWiki マークアップを可能な限り除去"""
     v = value.strip()
