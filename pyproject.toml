@@ -15,4 +15,5 @@ dependencies = [
     "pandas>=2.3.3",
     "sudachidict-core>=20251022",
     "sudachipy>=0.6.10",
+    "tiktoken>=0.12.0",
 ]
