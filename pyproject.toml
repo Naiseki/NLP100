@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "accelerate>=1.12.0",
+    "datasets>=4.4.1",
     "ginza>=5.2.0",
     "google-genai>=1.52.0",
     "ja-ginza>=5.2.0",
@@ -16,4 +18,6 @@ dependencies = [
     "sudachidict-core>=20251022",
     "sudachipy>=0.6.10",
     "tiktoken>=0.12.0",
+    "torch>=2.9.1",
+    "transformers>=4.57.3",
 ]
