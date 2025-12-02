@@ -1,38 +1,36 @@
 import os
 import sys
-from typing import Optional, List, Tuple
+from typing import Optional
 import re
 import unicodedata
 import pandas as pd
 import time
-from  google import genai
-from dataclasses import dataclass
+from transformers import pipeline, Pipeline
+import torch
+# 注意: 事前に pip install transformers torch accelerate が必要です
+from huggingface_hub import login as hf_login  # optional: login for gated models
 
 
-def call_gemini(prompt: str, client: genai.Client, model_id: str, temperature: float) -> Optional[str]:
-    max_retries = 3
-    for attempt in range(max_retries):
-        try:
-            response = client.models.generate_content(
-                model=model_id,
-                contents=[prompt],
-                config=genai.types.GenerateContentConfig(
-                    temperature=temperature
-                )
-            )
-            # response.text があるケースは返し、なければ response を文字列化して返す
-            if hasattr(response, "text") and response.text:
-                return response.text
-            return str(response)
-        except Exception as e:
-            if "503" in str(e) or "UNAVAILABLE" in str(e):
-                if attempt < max_retries - 1:
-                    print(f"API過負荷、再試行 {attempt + 1}/{max_retries}", file=sys.stderr)
-                    time.sleep(2 ** attempt)  # 指数バックオフ
-                    continue
-            print("Gemini API 呼び出しエラー:", e, file=sys.stderr)
-            return None
-    return None
+def call_local_model(prompt: str, llm: Pipeline, temperature: float, max_tokens: int = 64) -> Optional[str]:
+    """
+    transformers pipelineを使ってプロンプトを投げ、文字列出力を返す。
+    """
+    try:
+        outputs = llm(
+            prompt,
+            max_new_tokens=max_tokens,
+            do_sample=False,
+            temperature=float(temperature),
+            return_full_text=False
+        )
+        if isinstance(outputs, list) and len(outputs) > 0:
+            out = outputs[0]
+            text = out.get("generated_text") or out.get("text") or str(out)
+            return text.strip() if text else None
+        return None
+    except Exception as e:
+        print("ローカルモデル呼び出しエラー:", e, file=sys.stderr)
+        return None
 
 
 def extract_choice_from_text(text: str) -> Optional[str]:
@@ -53,20 +51,28 @@ def extract_choice_from_text(text: str) -> Optional[str]:
         return m2.group(1)
     return None
 
-def process_row(row, client: genai.Client, model_id: str, temperature: float) -> Optional[str]:
+def process_row(row, client: Pipeline, temperature: float) -> Optional[str]:
     prompt = f"問題: {row.question}\nA: {row.choice_a}\nB: {row.choice_b}\nC: {row.choice_c}\nD: {row.choice_d}\n正解の選択肢をA,B,C,Dで答えてください。"
-    response = call_gemini(prompt, client, model_id, temperature)
+    response = call_local_model(prompt, client, temperature)
     return extract_choice_from_text(response) if response else None
 
 def main():
     csv_path = "input/college_computer_science.csv"
-    model_id = "gemini-2.5-flash-lite"
-    temperature = 0.2
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        print("環境変数 GEMINI_API_KEY に API キーを設定してください。", file=sys.stderr)
+    temperature = 0.0
+    model_id = "google/gemma-3-4b-it"
+    hf_token = os.environ.get("HF_TOKEN")
+    if not hf_token:
+        raise ValueError("環境変数 HF_TOKEN に Hugging Face のアクセストークンを設定してください。")
+
+    try:
+        device_map = "auto" if torch.cuda.is_available() else None
+        client = pipeline("text-generation", model=model_id, device_map=device_map)
+    except Exception as e:
+        print("transformers pipeline の生成に失敗しました:", e, file=sys.stderr)
+        if ("403" in str(e)) or ("Access to model" in str(e)) or ("not found" in str(e).lower()):
+            print("モデルが gated の場合は、環境変数 HF_TOKEN にアクセストークンを設定してください。", file=sys.stderr)
+        print("必要なパッケージがインストールされているか、モデルが transformers 互換か確認してください。", file=sys.stderr)
         return None
-    client = genai.Client(api_key=api_key)
 
     # CSV を読み込む
     if not os.path.exists(csv_path):
@@ -81,14 +87,15 @@ def main():
     # df.itertuplesを使って各行を処理し、predicted列を追加
     predicted_list = []
     for i, row in enumerate(df.itertuples(), 1):
+        # 進捗表示（上書き）
         print(f"処理中: {i}/{total_count}", end='\r')
-        predicted = process_row(row, client, model_id, temperature)
+        predicted = process_row(row, client, temperature)
         predicted_list.append(predicted)
-        time.sleep(5)  # レートリミット: 1分あたり12リクエスト (60/12=5秒)
+
     df["predicted"] = predicted_list
     print()  # 改行して進捗表示をクリア
 
-    # 正解率を計
+    # 正解率を計算して表示
     correct_count = (df["predicted"] == df["answer"]).sum()
     accuracy = correct_count / total_count if total_count > 0 else 0
     print(f"正解率: {accuracy:.2%} ({correct_count}/{total_count})")
