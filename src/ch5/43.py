@@ -20,8 +20,8 @@ def call_local_model(prompt: str, llm: Pipeline, max_tokens: int = 64) -> Option
         outputs = llm(
             prompt,
             max_new_tokens=max_tokens,
-            do_sample=True,  # 更新: サンプリング有効化
-            temperature=0.2,  # 更新: 温度設定
+            do_sample=True,  # サンプリング有効化
+            temperature=0.2,  # 温度設定
             return_full_text=False
         )
         if isinstance(outputs, list) and len(outputs) > 0:
@@ -41,6 +41,7 @@ def extract_choice_from_text(text: str) -> Optional[str]:
     """
     if not text:
         return None
+    # 全角→半角正規化と大文字化
     s = unicodedata.normalize("NFKC", text).upper()
     # A,B,C,D の最初に現れる文字を取得
     m = re.search(r"\b([A-D])\b", s)
@@ -54,7 +55,6 @@ def extract_choice_from_text(text: str) -> Optional[str]:
 
 def main():
     csv_path = "input/college_computer_science.csv"
-    # 温度を削除: 無効なパラメータのため
     model_id = "google/gemma-3-4b-it"
     hf_token = os.environ.get("HF_TOKEN")
     if not hf_token:
@@ -94,7 +94,7 @@ def main():
         do_sample=True,  # サンプリング有効化
         temperature=0.2,  # 温度設定
         return_full_text=False,
-        batch_size=8  # バッチサイズを調整可能
+        batch_size=8  
     )
 
     # 出力から予測を抽出

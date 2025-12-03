@@ -7,8 +7,7 @@ import pandas as pd
 import time
 from transformers import pipeline, Pipeline
 import torch
-# 注意: 事前に pip install transformers torch accelerate が必要です
-from huggingface_hub import login as hf_login  # optional: login for gated models
+from huggingface_hub import login as hf_login  
 
 
 def call_local_model(prompt: str, llm: Pipeline, temperature: float, max_tokens: int = 64) -> Optional[str]:
@@ -40,6 +39,7 @@ def extract_choice_from_text(text: str) -> Optional[str]:
     """
     if not text:
         return None
+    # 全角→半角正規化と大文字化
     s = unicodedata.normalize("NFKC", text).upper()
     # A,B,C,D の最初に現れる文字を取得
     m = re.search(r"\b([A-D])\b", s)

@@ -52,7 +52,7 @@ def parse_scores_from_text(text: str, n_items: int = 10):
             if 1 <= idx <= n_items and 1 <= val <= 10:
                 scores[idx - 1] = val
             continue
-    # 最後の手段: テキスト中の "x/10" を順に拾って埋める（番号が無い場合の救済）
+    # テキスト中の "x/10" を順に拾って埋める（番号が無い場合の救済）
     if any(s is None for s in scores):
         found = re.findall(r'(\d{1,2})\s*\/\s*10', text)
         i = 0
@@ -90,7 +90,7 @@ def main():
 
     model_id = "gemini-2.5-flash-lite"
     temperature = 0.5
-    trials = 10  # 繰り返し回数（必要に応じて変更）
+    trials = 10  # 繰り返し回数
 
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -127,7 +127,6 @@ def main():
             stdev = None
         else:
             mean = statistics.mean(vals)
-            # 分散は母分散（pvariance）を使用。必要なら sample variance に変更可。
             var = statistics.pvariance(vals) if count >= 1 else None
             stdev = statistics.sqrt(var) if var is not None else None
         per_item_stats.append({
@@ -152,7 +151,7 @@ def main():
             writer.writerow([st["index"], st["mean"], st["variance"], st["stddev"], st["count"], json.dumps(st["samples"], ensure_ascii=False)])
     print(f"集計結果を CSV に出力しました: {csv_path}")
 
-    # テキスト出力（可読）
+    # テキスト出力
     txt_path = os.path.join(out_dir, "48_variance.txt")
     with open(txt_path, "w", encoding="utf-8") as tf:
         tf.write(f"試行回数: {trials}, 有効応答数: {successful_trials}\n")
