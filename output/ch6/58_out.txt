@@ -1,0 +1,6 @@
+デンドログラムを output/ch6/58_dendrogram.png に保存しました。
+クラスタ 0: Italy, Spain, Switzerland, France, Australia, Greece, Germany, Canada, England
+クラスタ 1: Egypt, Pakistan, Iran, Cuba
+クラスタ 2: Vietnam, China, Japan, Thailand, Russia
+クラスタ 3: Finland, Norway, Sweden
+クラスタ 4: Iraq, Afghanistan
