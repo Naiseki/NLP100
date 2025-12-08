@@ -1,0 +1,5 @@
+クラスタ 0: Cuba, Egypt
+クラスタ 1: Norway, Canada, Switzerland, Russia, Sweden, Finland
+クラスタ 2: China, Thailand, Vietnam, Iraq
+クラスタ 3: England, Germany, Greece, Spain, Japan, Australia, France, Italy
+クラスタ 4: Iran, Pakistan, Afghanistan
