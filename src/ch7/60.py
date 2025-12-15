@@ -2,8 +2,8 @@ import pandas as pd
 from collections import Counter
 
 def count_labels(file_path):
-    df = pd.read_csv(file_path, sep="\t", encoding="utf-8")
-    labels = df["label"].astype(int)
+    df = pd.read_csv(file_path, sep="\t", encoding="utf-8", dtype={"sentence": str, "label": int})
+    labels = df["label"]
     return labels.value_counts().to_dict()
 
 
