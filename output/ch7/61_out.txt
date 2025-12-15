@@ -1,0 +1,7 @@
+
+学習データ件数: 67349, 検証データ件数: 872
+
+学習データの最初の事例:
+テキスト: hide new secretions from the parental units 
+ラベル: 0
+特徴ベクトル: {'hide': 1, 'new': 1, 'secretions': 1, 'from': 1, 'the': 1, 'parental': 1, 'units': 1}
