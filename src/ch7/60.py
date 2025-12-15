@@ -1,20 +1,13 @@
-import csv
+import pandas as pd
 from collections import Counter
 
+def count_labels(file_path):
+    df = pd.read_csv(file_path, sep="\t", encoding="utf-8")
+    labels = df["label"].astype(int)
+    return labels.value_counts().to_dict()
+
+
 def main():
-    def count_labels(file_path):
-        labels = []
-        with open(file_path, "r", encoding="utf-8") as f:
-            reader = csv.reader(f, delimiter="\t")
-            next(reader)  # ヘッダーをスキップ
-            for row in reader:
-                if len(row) >= 2:
-                    # 2列目のラベルを取得
-                    labels.append(int(row[1])) 
-                else:
-                    raise ValueError("行の列数が不足しています。")
-        return Counter(labels)
-    
     train_path = "input/SST-2/train.tsv"
     dev_path = "input/SST-2/dev.tsv"
     
@@ -22,12 +15,12 @@ def main():
     dev_counts = count_labels(dev_path)
     
     print("訓練データ:")
-    print(f"ネガティブ (0): {train_counts[0]}")
-    print(f"ポジティブ (1): {train_counts[1]}")
+    print(f"ネガティブ (0): {train_counts.get(0, 0)}")
+    print(f"ポジティブ (1): {train_counts.get(1, 0)}")
     
     print("検証データ:")
-    print(f"ネガティブ (0): {dev_counts[0]}")
-    print(f"ポジティブ (1): {dev_counts[1]}")
+    print(f"ネガティブ (0): {dev_counts.get(0, 0)}")
+    print(f"ポジティブ (1): {dev_counts.get(1, 0)}")
 
 if __name__ == "__main__":
     main()
