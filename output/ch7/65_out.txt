@@ -1,0 +1,2 @@
+テキスト: the worst movie I ‘ve ever seen
+予測ラベル: 0
