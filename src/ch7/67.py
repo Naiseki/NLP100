@@ -30,8 +30,6 @@ def eval(model: any, vec: any, dataset_path: str):
 	X_dicts = [it["feature"] for it in items]
 	y_true = [int(it["label"]) for it in items]
 
-	model, vec = load_model()
-
 	X = vec.transform(X_dicts)
 	y_pred = model.predict(X)
 	classes = getattr(model, "classes_", None)
