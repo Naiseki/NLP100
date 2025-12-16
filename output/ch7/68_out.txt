@@ -1,0 +1,43 @@
+重みの高い特徴量トップ20:
+refreshing	3.479714
+remarkable	3.473707
+powerful	3.254612
+hilarious	3.191901
+beautiful	3.008017
+wonderful	2.995048
+prose	2.932256
+terrific	2.923800
+treat	2.879996
+appealing	2.863708
+enjoyable	2.829250
+charmer	2.781263
+vividly	2.723159
+likable	2.705751
+solid	2.636463
+charming	2.635547
+impressive	2.615740
+fascinating	2.587390
+half-bad	2.587254
+intriguing	2.557994
+
+重みの低い特徴量トップ20:
+lacking	-4.357221
+lacks	-4.088141
+worst	-4.019042
+devoid	-3.706504
+mess	-3.698081
+failure	-3.644027
+stupid	-3.373093
+bore	-3.302434
+flat	-3.228951
+depressing	-3.217362
+loses	-3.216764
+waste	-3.193241
+lack	-3.078856
+squanders	-3.050406
+none	-3.024278
+hardly	-3.019198
+lousy	-3.014386
+poor	-3.013468
+pointless	-3.006373
+unfortunately	-2.968740
