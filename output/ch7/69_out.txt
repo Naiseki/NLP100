@@ -1,0 +1,7 @@
+C=0.001: accuracy=0.6846
+C=0.01: accuracy=0.7557
+C=0.1: accuracy=0.8005
+C=1: accuracy=0.8108
+C=10: accuracy=0.8257
+C=100: accuracy=0.7947
+C=1000: accuracy=0.7775
