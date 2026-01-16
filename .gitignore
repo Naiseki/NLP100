@@ -1,2 +1,3 @@
 input/GoogleNews-vectors-negative300.bin.gz
 input/SST-2/original/
+output/ch8/E.npy
