@@ -1,0 +1,6 @@
+Processing datasets...
+訓練データ: 66512件
+検証データ: 872件
+
+Example from train_data:
+{'text': 'hide new secretions from the parental units ', 'label': tensor([0.]), 'input_ids': tensor([  5785,     66, 113845,     18,     12,  15095,   1594])}
