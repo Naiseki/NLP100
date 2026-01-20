@@ -1,6 +1,7 @@
-Processing datasets...
-訓練データ: 66512件
-検証データ: 872件
+データセットを処理中...
+訓練セット: 66512 件
+検証セット: 872 件
+処理済みデータを output/ch8/train.pkl と output/ch8/dev.pkl に保存しました。
 
-Example from train_data:
+訓練セットのサンプル:
 {'text': 'hide new secretions from the parental units ', 'label': tensor([0.]), 'input_ids': tensor([  5785,     66, 113845,     18,     12,  15095,   1594])}
