@@ -48,7 +48,7 @@ class LogisticRegressionCBoW(nn.Module):
         
         return probs
 
-def load_resources(npy_path: str, csv_path: str) -> Tuple[torch.Tensor, Dict[str, int]]:
+def load_embedding(npy_path: str) -> torch.Tensor:
     """
     保存済みの埋め込み行列(Numpy)と単語辞書(CSV)を読み込む。
     """
@@ -56,21 +56,16 @@ def load_resources(npy_path: str, csv_path: str) -> Tuple[torch.Tensor, Dict[str
     E_np = np.load(npy_path)
     E_tensor = torch.from_numpy(E_np).float()
     
-    # 単語辞書の読み込み
-    df = pd.read_csv(csv_path, header=None, names=["id", "word"])
-    word2id = dict(zip(df["word"], df["id"]))
-    
-    return E_tensor, word2id
+    return E_tensor
 
 def main() -> None:
     # ファイルパスの指定
     npy_path: str = "output/ch8/E.npy"
-    csv_path: str = "output/ch8/words.csv"
 
     try:
         # 1. データのロード
         print("リソースを読み込み中...")
-        E, word2id = load_resources(npy_path, csv_path)
+        E = load_embedding(npy_path)
         print(f"埋め込み行列を読み込みました。形状: {E.shape}")
 
         # 2. モデルの構築
