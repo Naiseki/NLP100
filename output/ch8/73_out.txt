@@ -1,0 +1,59 @@
+読み込み: 埋め込みとデータセット
+埋め込み行列の形状: (500001, 300) (語彙数: 500001, 次元数: 300)
+訓練開始: device=cuda, epochs=5, batch_size=64
+Epoch 1 batch  100 loss avg = 0.632203
+Epoch 1 batch  200 loss avg = 0.559505
+Epoch 1 batch  300 loss avg = 0.515736
+Epoch 1 batch  400 loss avg = 0.492272
+Epoch 1 batch  500 loss avg = 0.470052
+Epoch 1 batch  600 loss avg = 0.471170
+Epoch 1 batch  700 loss avg = 0.451628
+Epoch 1 batch  800 loss avg = 0.443619
+Epoch 1 batch  900 loss avg = 0.439215
+Epoch 1 batch 1000 loss avg = 0.430859
+Epoch 1 終了.
+Epoch 2 batch  100 loss avg = 0.421270
+Epoch 2 batch  200 loss avg = 0.419469
+Epoch 2 batch  300 loss avg = 0.418362
+Epoch 2 batch  400 loss avg = 0.416916
+Epoch 2 batch  500 loss avg = 0.398282
+Epoch 2 batch  600 loss avg = 0.412534
+Epoch 2 batch  700 loss avg = 0.407134
+Epoch 2 batch  800 loss avg = 0.405913
+Epoch 2 batch  900 loss avg = 0.402600
+Epoch 2 batch 1000 loss avg = 0.409377
+Epoch 2 終了.
+Epoch 3 batch  100 loss avg = 0.410656
+Epoch 3 batch  200 loss avg = 0.398247
+Epoch 3 batch  300 loss avg = 0.395836
+Epoch 3 batch  400 loss avg = 0.384297
+Epoch 3 batch  500 loss avg = 0.397313
+Epoch 3 batch  600 loss avg = 0.399201
+Epoch 3 batch  700 loss avg = 0.397419
+Epoch 3 batch  800 loss avg = 0.383182
+Epoch 3 batch  900 loss avg = 0.395427
+Epoch 3 batch 1000 loss avg = 0.398169
+Epoch 3 終了.
+Epoch 4 batch  100 loss avg = 0.370518
+Epoch 4 batch  200 loss avg = 0.398318
+Epoch 4 batch  300 loss avg = 0.390000
+Epoch 4 batch  400 loss avg = 0.384272
+Epoch 4 batch  500 loss avg = 0.395408
+Epoch 4 batch  600 loss avg = 0.396808
+Epoch 4 batch  700 loss avg = 0.400020
+Epoch 4 batch  800 loss avg = 0.387659
+Epoch 4 batch  900 loss avg = 0.390414
+Epoch 4 batch 1000 loss avg = 0.389261
+Epoch 4 終了.
+Epoch 5 batch  100 loss avg = 0.402379
+Epoch 5 batch  200 loss avg = 0.393741
+Epoch 5 batch  300 loss avg = 0.378832
+Epoch 5 batch  400 loss avg = 0.375133
+Epoch 5 batch  500 loss avg = 0.391879
+Epoch 5 batch  600 loss avg = 0.390958
+Epoch 5 batch  700 loss avg = 0.385815
+Epoch 5 batch  800 loss avg = 0.370872
+Epoch 5 batch  900 loss avg = 0.393035
+Epoch 5 batch 1000 loss avg = 0.390175
+Epoch 5 終了.
+訓練完了。線形層の重みを保存します: output/ch8/w_linear.pt
