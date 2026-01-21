@@ -1,0 +1,14 @@
+対象の文: The movie was full of [MASK].
+
+Rank  | Token           | Probability 
+-----------------------------------
+1     | fun             | 0.1071
+2     | surprises       | 0.0663
+3     | drama           | 0.0447
+4     | stars           | 0.0272
+5     | laughs          | 0.0254
+6     | action          | 0.0195
+7     | excitement      | 0.0190
+8     | people          | 0.0183
+9     | tension         | 0.0150
+10    | music           | 0.0146
