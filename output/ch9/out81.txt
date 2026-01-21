@@ -1,0 +1,14 @@
+model.safetensors: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 440M/440M [00:07<00:00, 57.7MB/s]
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertForMaskedLM: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'cls.seq_relationship.bias', 'cls.seq_relationship.weight']
+- This IS expected if you are initializing BertForMaskedLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForMaskedLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Device set to use cuda:0
+元の文: The movie was full of [MASK].
+
+Token           | Score      | Full Sentence
+--------------------------------------------------
+fun             | 0.1071     | the movie was full of fun.
+surprises       | 0.0663     | the movie was full of surprises.
+drama           | 0.0447     | the movie was full of drama.
+stars           | 0.0272     | the movie was full of stars.
+laughs          | 0.0254     | the movie was full of laughs.
