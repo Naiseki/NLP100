@@ -1,0 +1,9 @@
+ミニバッチの構成 (Batch Size: 4)
+----------------------------------------
+input_ids shape:      torch.Size([4, 66])
+attention_mask shape: torch.Size([4, 66])
+labels shape:         torch.Size([4])
+
+--- 最初の事例のトークンID列 (一部) ---
+tensor([  101,  5342,  2047,  3595,  8496,  2013,  1996, 18643,  3197,   102,
+            0,     0,     0,     0,     0,     0,     0,     0,     0,     0])
