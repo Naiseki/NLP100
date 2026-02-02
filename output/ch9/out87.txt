@@ -1,0 +1,16 @@
+  | Name      | Type                          | Params | Mode  | FLOPs
+----------------------------------------------------------------------------
+0 | model     | BertForSequenceClassification | 109 M  | eval  | 0    
+1 | train_acc | MulticlassAccuracy            | 0      | train | 0    
+2 | val_acc   | MulticlassAccuracy            | 0      | train | 0    
+----------------------------------------------------------------------------
+109 M     Trainable params
+0         Non-trainable params
+109 M     Total params
+437.935   Total estimated model params size (MB)
+2         Modules in train mode
+231       Modules in eval mode
+0         Total Flops
+/net/nas4/data/home/kitahara/workspace/NLP100/.venv/lib/python3.12/site-packages/lightning/pytorch/loops/fit_loop.py:534: Found 231 module(s) in eval mode at the start of training. This may lead to unexpected behavior during training. If this is intentional, you can ignore this warning.
+Epoch 2: 100%|██████████| 1053/1053 [04:00<00:00,  4.39it/s, v_num=1, train_loss=0.0146, val_loss=0.242, val_acc=0.921, train_acc=0.984]`Trainer.fit` stopped: `max_epochs=3` reached.
+Epoch 2: 100%|██████████| 1053/1053 [04:22<00:00,  4.01it/s, v_num=1, train_loss=0.0146, val_loss=0.242, val_acc=0.921, train_acc=0.984]
