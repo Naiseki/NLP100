@@ -1,0 +1,9 @@
+Loading checkpoint: output/ch9/lightning87/lightning_logs/version_1/checkpoints/epoch=2-step=3159.ckpt
+
+Sentence                                      | Prediction | Confidence
+---------------------------------------------------------------------------
+The movie was full of incomprehensibilities.  | Negative   | 0.9970
+The movie was full of fun.                    | Positive   | 0.9997
+The movie was full of excitement.             | Positive   | 0.9997
+The movie was full of crap.                   | Negative   | 0.9994
+The movie was full of rubbish.                | Negative   | 0.9984
