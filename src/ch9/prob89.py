@@ -4,8 +4,6 @@ import lightning as L
 from transformers import AutoModel, AutoTokenizer
 from torch.optim import AdamW
 from torchmetrics import Accuracy
-from prob87 import SST2Dataset
-import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from torchmetrics import Accuracy
@@ -16,27 +14,27 @@ class CustomBERTClassifier(L.LightningModule):
         super().__init__()
         self.save_hyperparameters()
         
-        # 1. BERTのベースモデル（分類ヘッドなし）をロード
+        # BERTのベースモデル（分類ヘッドなし）をロード
         self.bert = AutoModel.from_pretrained(model_name)
         
-        # 2. 分類用の線形層を自分で定義
-        # BERTの隠れ層の次元（通常768）からクラス数（2）へ
+        # 分類用の線形層（特徴次元数→2）
         self.classifier = nn.Linear(self.bert.config.hidden_size, 2)
         
-        # 3. 損失関数とメトリクス
+        # 損失関数, 評価指標
         self.criterion = nn.CrossEntropyLoss()
         self.train_acc = Accuracy(task="multiclass", num_classes=2)
         self.val_acc = Accuracy(task="multiclass", num_classes=2)
 
     def forward(self, input_ids, attention_mask):
-        # BERTに通す
+        # BERTに予測させる
+        # outputsから隠れ層の状態やアテンションなどが得られる
         outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
         
-        # 最終層の出力 (last_hidden_state): [batch_size, seq_len, hidden_size]
+        # 最終層 (last_hidden_state): [バッチサイズ, トークン数, 隠れ層次元数]
         last_hidden_state = outputs.last_hidden_state
         
         # [CLS]トークン（0番目のトークン）のベクトルを抽出
-        # cls_token_embeddings: [batch_size, hidden_size]
+        # cls_token_embeddings: [バッチサイズ, 隠れ層次元数]
         cls_token_embeddings = last_hidden_state[:, 0, :]
         
         # 自前の分類層に通す
@@ -44,9 +42,13 @@ class CustomBERTClassifier(L.LightningModule):
         return logits
 
     def training_step(self, batch, batch_idx):
+        # モデル実行をして、ロジット（ロジスティック関数の逆関数の値）を得る
         logits = self(batch['input_ids'], batch['attention_mask'])
+        # 損失を計算
         loss = self.criterion(logits, batch['labels'])
         
+        # ロジットが最大のクラスを予測とする
+        # logits: [バッチサイズ, クラス数]なので、dim=1で最大値のインデックスを取得
         preds = torch.argmax(logits, dim=1)
         self.train_acc(preds, batch['labels'])
         self.log("train_loss", loss, prog_bar=True)
@@ -65,15 +67,8 @@ class CustomBERTClassifier(L.LightningModule):
     def configure_optimizers(self):
         return AdamW(self.parameters(), lr=self.hparams.lr)
 
-def main():
-    trrain_set = SST2Dataset("output/ch9/train_data.pth")
-    dev_set = SST2Dataset("output/ch9/dev_data.pth")
 
-    train_loader = DataLoader(train_set, batch_size=64, shuffle=True, num_workers=3)
-    dev_loader = DataLoader(dev_set, batch_size=64, num_workers=3)
-
-
-# 1. データセットの定義
+# データセットの定義
 class SST2Dataset(Dataset):
     def __init__(self, data_path):
         data = torch.load(data_path)
@@ -91,13 +86,11 @@ class SST2Dataset(Dataset):
     def __len__(self):
         return len(self.labels)
 
-# 3. メイン処理
 def main():
     # データの準備
     train_set = SST2Dataset("output/ch9/train_data.pth")
     dev_set = SST2Dataset("output/ch9/dev_data.pth")
     
-    # TITAN RTX 向けに安定した設定
     train_loader = DataLoader(train_set, batch_size=64, shuffle=True, num_workers=3)
     dev_loader = DataLoader(dev_set, batch_size=64, num_workers=3)
 
@@ -109,9 +102,9 @@ def main():
         max_epochs=3,
         accelerator="gpu",
         devices=1,
-        precision="32", # セグフォ回避のため16-mixedではなく32
+        precision="32", 
         log_every_n_steps=10,
-        default_root_dir="./output/ch9/lightning89/" # ここにログやチェックポイントが保存される
+        default_root_dir="./output/ch9/lightning89/" # ログやチェックポイントの保存先
     )
 
     # 学習開始

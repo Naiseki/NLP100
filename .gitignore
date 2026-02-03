@@ -3,4 +3,4 @@ input/SST-2/original/
 output/ch8/E.npy
 **/__pycache__/**
 output/ch9/train_data.pth
-output/ch9/lightning87/lightning_logs/**/checkpoints/**
+output/ch9/**/lightning_logs/**/checkpoints/**
