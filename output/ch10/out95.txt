@@ -1,0 +1,32 @@
+================================================================================
+Multi-turn Prompt:
+--------------------------------------------------------------------------------
+<|im_start|>user
+You are a helpful assistant.<|im_end|>
+<|im_start|>user
+What do you call a sweet eaten after dinner?<|im_end|>
+<|im_start|>assistant
+A sweet eaten after dinner is commonly called a **dessert**.  
+
+Desserts are typically sweet treats served at the end of a meal, providing a pleasant contrast to the savory flavors of the main course. Examples include cakes, ice cream,<|im_end|>
+<|im_start|>user
+Please give me the plural form of the word with its spelling in reverse order.<|im_end|>
+<|im_start|>assistant
+
+================================================================================
+
+Model Response 1:
+A sweet eaten after dinner is commonly called a **dessert**.  
+
+Desserts are typically sweet treats served at the end of a meal, providing a pleasant contrast to the savory flavors of the main course. Examples include cakes, ice cream,
+
+Model Response 2:
+--------------------------------------------------------------------------------
+Sure! Let's break down your request step by step:
+
+1. **"Give me the plural form of the word"** – We need to choose a word. Since you didn't specify one, I'll pick a common word that makes sense in context — let's go with **"apple"**.
+
+2. **Plural form of "apple"** → **"apples"**
+
+3. **Reverse the spelling of that plural form** → Take "apples" and reverse
+================================================================================
