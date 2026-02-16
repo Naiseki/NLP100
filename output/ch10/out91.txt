@@ -1,0 +1,41 @@
+================================================================================
+Prompt: The movie was full of
+================================================================================
+
+1. 貪欲法:
+--------------------------------------------------------------------------------
+The movie was full of jokes and jokes about how the movie was a joke. It was a joke about how the movie was a joke. It was a joke about how the movie was a joke. It was a joke about how the movie was a
+
+2. Beam Search (num_beams=5):
+--------------------------------------------------------------------------------
+The movie was full of jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes and jokes
+
+3. サンプリング (Temperature = 0.5):
+--------------------------------------------------------------------------------
+The movie was full of jokes and jokes. It was funny, but it was also a lot of fun. I think it's a great movie. It's a very good movie. It's a fun movie.
+
+AVC: What was
+
+4. サンプリング (Temperature = 1.0):
+--------------------------------------------------------------------------------
+The movie was full of serious commentary and witty jokes, which I thought would be interesting, to give you the sense to get off my back." I thought about this for a minute and then realized it was really interesting. But then, I also realized
+
+5. サンプリング (Temperature = 1.5):
+--------------------------------------------------------------------------------
+The movie was full of some seriously cheesy footage like a character wearing a long john over his belt and being pushed to a spot of over-dressed by an entire room.
+
+Watching this same kind of stunt with only the bathroom in (
+
+6. Top-k サンプリング (k=50):
+--------------------------------------------------------------------------------
+The movie was full of weird puns and it was so fucking funny. When he said there were two ways to kill me, he was referring to the movies, but the joke he had was, when people tell you 'dude's like '
+
+7. Top-p (Nucleus) サンプリング (p=0.95):
+--------------------------------------------------------------------------------
+The movie was full of jokes, but also the fact that he would do anything to make the world a better place.
+
+He was also seen singing along with the other celebrities around him, saying what I needed to hear. I was like he
+
+8. Top-k + Top-p サンプリング (k=50, p=0.95):
+--------------------------------------------------------------------------------
+The movie was full of dark jokes about the Holocaust, Nazi soldiers, and black women. We then had three women who were black. They were like a bunch of gals. They were like, "Well, if this was my life, would
