@@ -1,0 +1,6 @@
+Sentence                                 |   Perplexity
+-------------------------------------------------------
+The movie was full of surprises          |      99.3545
+The movies were full of surprises        |     126.4820
+The movie were full of surprises         |     278.8823
+The movies was full of surprises         |     274.6613
