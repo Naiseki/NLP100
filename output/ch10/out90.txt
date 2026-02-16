@@ -1,0 +1,31 @@
+モデルとトークナイザーを読み込んでいます...
+
+入力プロンプト: 'The movie was full of'
+
+トークン列に変換:
+Token IDs: [464, 3807, 373, 1336, 286]
+Tokens: ['The', ' movie', ' was', ' full', ' of']
+
+次のトークンとして適切なもの上位10個:
+------------------------------------------------------------
+ 1. Token ID: 14532 | Token: ' jokes'        | Probability: 0.021892
+ 2. Token ID:  1049 | Token: ' great'        | Probability: 0.018644
+ 3. Token ID: 22051 | Token: ' laughs'       | Probability: 0.011524
+ 4. Token ID:  2089 | Token: ' bad'          | Probability: 0.010874
+ 5. Token ID: 24072 | Token: ' surprises'    | Probability: 0.010668
+ 6. Token ID: 10288 | Token: ' references'   | Probability: 0.010528
+ 7. Token ID:  1257 | Token: ' fun'          | Probability: 0.009992
+ 8. Token ID: 14733 | Token: ' humor'        | Probability: 0.007415
+ 9. Token ID:   366 | Token: ' "'            | Probability: 0.007408
+10. Token ID:   262 | Token: ' the'          | Probability: 0.006708
+
+============================================================
+まとめ:
+============================================================
+入力: 'The movie was full of'
+トークン数: 5
+
+上位3つの次のトークン:
+  1. ' jokes' (確率: 0.0219)
+  2. ' great' (確率: 0.0186)
+  3. ' laughs' (確率: 0.0115)
