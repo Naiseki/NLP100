@@ -1,0 +1,17 @@
+================================================================================
+Generated Prompt (with Chat Template):
+--------------------------------------------------------------------------------
+<|im_start|>system
+You are a helpful assistant.<|im_end|>
+<|im_start|>user
+What do you call a sweet eaten after dinner?<|im_end|>
+<|im_start|>assistant
+
+================================================================================
+
+Model Response:
+--------------------------------------------------------------------------------
+A sweet eaten after dinner is commonly called a **dessert**.  
+
+Desserts are typically sweet treats enjoyed at the end of a meal, providing a pleasant contrast to the savory flavors of the main course. Examples include cakes, ice cream,
+================================================================================
