@@ -1,0 +1,12 @@
+DPO (Direct Preference Optimization) Training Results
+================================================================================
+
+Model: HuggingFaceTB/SmolLM2-135M-Instruct
+Training samples: 1000
+Dev samples: 872
+
+Accuracy before DPO: 0.5200
+Accuracy after DPO: 0.7000
+Improvement: 0.1800
+
+Model saved to: dpo_sentiment_model
