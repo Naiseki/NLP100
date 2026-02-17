@@ -12,9 +12,9 @@
     {
       "epoch": 1.0,
       "eval_loss": 54.33559799194336,
-      "eval_runtime": 13.8703,
-      "eval_samples_per_second": 62.868,
-      "eval_steps_per_second": 15.717,
+      "eval_runtime": 13.8212,
+      "eval_samples_per_second": 63.092,
+      "eval_steps_per_second": 15.773,
       "step": 63
     },
     {
@@ -27,9 +27,9 @@
     {
       "epoch": 2.0,
       "eval_loss": 26.141752243041992,
-      "eval_runtime": 14.0293,
-      "eval_samples_per_second": 62.156,
-      "eval_steps_per_second": 15.539,
+      "eval_runtime": 13.9958,
+      "eval_samples_per_second": 62.304,
+      "eval_steps_per_second": 15.576,
       "step": 126
     }
   ],

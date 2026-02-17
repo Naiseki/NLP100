@@ -251,5 +251,23 @@ def main():
     model.save_pretrained(OUTPUT_DIR)
     tokenizer.save_pretrained(OUTPUT_DIR)
 
+    # 結果の保存
+    output_file = Path("output/ch10/out98.txt")
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write("SFT (Supervised Fine-Tuning) Training Results\n")
+        f.write("="*80 + "\n\n")
+        f.write(f"Model: {MODEL_NAME}\n")
+        f.write(f"Training samples: {len(train_dataset)}\n")
+        f.write(f"Dev samples: {len(dev_dataset)}\n\n")
+        f.write(f"Accuracy before SFT: {before_accuracy:.4f}\n")
+        f.write(f"Accuracy after SFT: {after_accuracy:.4f}\n")
+        f.write(f"Improvement: {after_accuracy - before_accuracy:+.4f}\n\n")
+        f.write(f"Model saved to: {OUTPUT_DIR}\n")
+    
+    print(f"\nResults saved to: {output_file}")
+    print("\nDone!")
+
 if __name__ == "__main__":
     main()

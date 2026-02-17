@@ -1,0 +1,12 @@
+SFT (Supervised Fine-Tuning) Training Results
+================================================================================
+
+Model: HuggingFaceTB/SmolLM2-135M-Instruct
+Training samples: 1000
+Dev samples: 872
+
+Accuracy before SFT: 0.5585
+Accuracy after SFT: 0.4908
+Improvement: -0.0677
+
+Model saved to: ./finetuned_sentiment_model
