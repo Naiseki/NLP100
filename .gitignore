@@ -4,3 +4,8 @@ output/ch8/E.npy
 **/__pycache__/**
 output/ch9/train_data.pth
 output/ch9/**/lightning_logs/**/checkpoints/**
+**/*.pt
+**/*.pth
+**/*.safetensors
+**/*.un~
+**/*.bin
