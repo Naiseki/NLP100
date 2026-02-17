@@ -1,0 +1,15 @@
+Using device: cuda
+
+Loading tokenizer and model: HuggingFaceTB/SmolLM2-360M-Instruct
+
+Loading datasets...
+Train samples: 67349
+Dev samples: 872
+
+================================================================================
+Starting training for 3 epochs
+================================================================================
+
+
+Epoch 1/3
+--------------------------------------------------------------------------------
