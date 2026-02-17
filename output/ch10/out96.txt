@@ -1,0 +1,31 @@
+Loading model: Qwen/Qwen3-4B-Instruct-2507
+Using device: cuda
+
+Loading data from: /net/nas4/data/home/kitahara/workspace/NLP100/input/SST-2/dev.tsv
+Total samples: 872
+
+Predicting sentiments...
+
+Sample 1:
+  Text: it 's a charming and often affecting journey . 
+  True: 1, Predicted: 1
+
+Sample 2:
+  Text: unflinchingly bleak and desperate 
+  True: 0, Predicted: 0
+
+Sample 3:
+  Text: allows us to hope that nolan is poised to embark a major career as a commercial yet inventive filmmaker . 
+  True: 1, Predicted: 1
+
+Sample 4:
+  Text: the acting , costumes , music , cinematography and sound are all astounding given the production 's austere locales . 
+  True: 1, Predicted: 1
+
+Sample 5:
+  Text: it 's slow -- very , very slow . 
+  True: 0, Predicted: 0
+
+================================================================================
+Accuracy: 0.9427 (822/872)
+================================================================================
