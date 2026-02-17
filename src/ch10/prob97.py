@@ -7,17 +7,17 @@
 
 import torch
 import torch.nn as nn
-from torch.utils.data import Dataset, DataLoader
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from torch.utils.data import Dataset
+from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer
 from pathlib import Path
-from tqdm import tqdm
 import numpy as np
 from sklearn.metrics import accuracy_score
+import os
 
 class SST2Dataset(Dataset):
     """SST-2データセット用のDatasetクラス"""
     
-    def __init__(self, filepath, tokenizer, max_length=128):
+    def __init__(self, filepath, tokenizer, max_length=128, max_samples=None):
         self.sentences = []
         self.labels = []
         self.tokenizer = tokenizer
@@ -27,6 +27,8 @@ class SST2Dataset(Dataset):
         with open(filepath, 'r', encoding='utf-8') as f:
             next(f)  # ヘッダーをスキップ
             for line in f:
+                if max_samples and len(self.sentences) >= max_samples:
+                    break
                 line = line.strip()
                 if line:
                     parts = line.split('\t')
@@ -53,7 +55,7 @@ class SST2Dataset(Dataset):
         return {
             'input_ids': encoding['input_ids'].squeeze(0),
             'attention_mask': encoding['attention_mask'].squeeze(0),
-            'label': torch.tensor(label, dtype=torch.long)
+            'labels': torch.tensor(label, dtype=torch.long)
         }
 
 class SentimentClassifier(nn.Module):
@@ -67,6 +69,7 @@ class SentimentClassifier(nn.Module):
         
         # GPTモデルの次元数を取得
         self.hidden_size = self.gpt.config.hidden_size
+        self.num_labels = num_labels
         
         # フィードフォワード層（分類ヘッド）
         self.classifier = nn.Sequential(
@@ -77,7 +80,7 @@ class SentimentClassifier(nn.Module):
             nn.Linear(hidden_dim, num_labels)
         )
     
-    def forward(self, input_ids, attention_mask):
+    def forward(self, input_ids, attention_mask, labels=None):
         # GPTでテキストをベクトル化
         outputs = self.gpt.model(
             input_ids=input_ids,
@@ -99,71 +102,19 @@ class SentimentClassifier(nn.Module):
         # 分類層を通して予測
         logits = self.classifier(pooled_output)
         
-        return logits
+        loss = None
+        if labels is not None:
+            loss_fct = nn.CrossEntropyLoss()
+            loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1))
+        
+        return (loss, logits) if loss is not None else logits
 
-def train_epoch(model, dataloader, optimizer, criterion, device):
-    """1エポックの学習"""
-    model.train()
-    total_loss = 0
-    predictions = []
-    true_labels = []
-    
-    for batch in tqdm(dataloader, desc="Training"):
-        input_ids = batch['input_ids'].to(device)
-        attention_mask = batch['attention_mask'].to(device)
-        labels = batch['label'].to(device)
-        
-        # 勾配をゼロに
-        optimizer.zero_grad()
-        
-        # 順伝播
-        logits = model(input_ids, attention_mask)
-        loss = criterion(logits, labels)
-        
-        # 逆伝播
-        loss.backward()
-        optimizer.step()
-        
-        total_loss += loss.item()
-        
-        # 予測と正解ラベルを記録
-        preds = torch.argmax(logits, dim=1)
-        predictions.extend(preds.cpu().numpy())
-        true_labels.extend(labels.cpu().numpy())
-    
-    avg_loss = total_loss / len(dataloader)
-    accuracy = accuracy_score(true_labels, predictions)
-    
-    return avg_loss, accuracy
-
-def evaluate(model, dataloader, criterion, device):
-    """評価"""
-    model.eval()
-    total_loss = 0
-    predictions = []
-    true_labels = []
-    
-    with torch.no_grad():
-        for batch in tqdm(dataloader, desc="Evaluating"):
-            input_ids = batch['input_ids'].to(device)
-            attention_mask = batch['attention_mask'].to(device)
-            labels = batch['label'].to(device)
-            
-            # 順伝播
-            logits = model(input_ids, attention_mask)
-            loss = criterion(logits, labels)
-            
-            total_loss += loss.item()
-            
-            # 予測と正解ラベルを記録
-            preds = torch.argmax(logits, dim=1)
-            predictions.extend(preds.cpu().numpy())
-            true_labels.extend(labels.cpu().numpy())
-    
-    avg_loss = total_loss / len(dataloader)
-    accuracy = accuracy_score(true_labels, predictions)
-    
-    return avg_loss, accuracy
+def compute_metrics(eval_pred):
+    """評価メトリクスの計算"""
+    logits, labels = eval_pred
+    predictions = np.argmax(logits, axis=-1)
+    accuracy = accuracy_score(labels, predictions)
+    return {"accuracy": accuracy}
 
 def main():
     # ハイパーパラメータ
@@ -174,18 +125,29 @@ def main():
     LEARNING_RATE = 2e-5
     HIDDEN_DIM = 256
     DROPOUT = 0.1
+    MAX_TRAIN_SAMPLES = 1000  # 訓練データを制限
     
     # データパス
     TRAIN_PATH = Path("input/SST-2/train.tsv")
     DEV_PATH = Path("input/SST-2/dev.tsv")
-    
+
     # デバイス設定
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        # 最初のGPUのみを使用
+        os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+        device = torch.device("cuda:0")
+    else:
+        device = torch.device("cpu")
     print(f"Using device: {device}")
     
     # トークナイザーとモデルの初期化
     print(f"\nLoading tokenizer and model: {MODEL_NAME}")
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    
+    # パディングトークンの設定（GPT系モデルには通常必要）
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+        
     model = SentimentClassifier(
         model_name=MODEL_NAME,
         num_labels=2,
@@ -199,51 +161,72 @@ def main():
     
     model = model.to(device)
     
-    # データセットとデータローダーの作成
+    # データセットの作成
     print("\nLoading datasets...")
-    train_dataset = SST2Dataset(TRAIN_PATH, tokenizer, max_length=MAX_LENGTH)
+    train_dataset = SST2Dataset(TRAIN_PATH, tokenizer, max_length=MAX_LENGTH, max_samples=MAX_TRAIN_SAMPLES)
     dev_dataset = SST2Dataset(DEV_PATH, tokenizer, max_length=MAX_LENGTH)
-    
-    train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
-    dev_loader = DataLoader(dev_dataset, batch_size=BATCH_SIZE, shuffle=False)
     
     print(f"Train samples: {len(train_dataset)}")
     print(f"Dev samples: {len(dev_dataset)}")
     
-    # 損失関数とオプティマイザー（分類層のみを学習）
-    criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.AdamW(model.classifier.parameters(), lr=LEARNING_RATE)
+    # トレーニング設定
+    training_args = TrainingArguments(
+        output_dir="output/ch10/sentiment_classifier",
+        num_train_epochs=NUM_EPOCHS,
+        per_device_train_batch_size=BATCH_SIZE,
+        per_device_eval_batch_size=BATCH_SIZE,
+        learning_rate=LEARNING_RATE,
+        logging_steps=10,
+        eval_strategy="epoch",
+        save_strategy="epoch",
+        load_best_model_at_end=True,
+        metric_for_best_model="accuracy",
+        remove_unused_columns=False,  # カスタムモデルの場合はTrueにすると必要な引数が消える場合がある
+        bf16=torch.cuda.is_available(),  # FP16の代わりにBF16を使用
+        save_safetensors=False,  # 共有テンソルによる保存エラーを回避
+    )
     
-    # 学習ループ
+    # Trainerの初期化
+    print("\nInitializing Trainer...")
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=train_dataset,
+        eval_dataset=dev_dataset,
+        compute_metrics=compute_metrics,
+    )
+    
+    # 学習実行
     print(f"\n{'='*80}")
     print(f"Starting training for {NUM_EPOCHS} epochs")
     print(f"{'='*80}\n")
     
-    best_dev_accuracy = 0.0
+    trainer.train()
     
-    for epoch in range(NUM_EPOCHS):
-        print(f"\nEpoch {epoch + 1}/{NUM_EPOCHS}")
-        print("-" * 80)
-        
-        # 学習
-        train_loss, train_acc = train_epoch(model, train_loader, optimizer, criterion, device)
-        print(f"Train Loss: {train_loss:.4f}, Train Accuracy: {train_acc:.4f}")
-        
-        # 評価
-        dev_loss, dev_acc = evaluate(model, dev_loader, criterion, device)
-        print(f"Dev Loss: {dev_loss:.4f}, Dev Accuracy: {dev_acc:.4f}")
-        
-        # ベストモデルの保存
-        if dev_acc > best_dev_accuracy:
-            best_dev_accuracy = dev_acc
-            torch.save(model.state_dict(), "best_model.pt")
-            print(f"Best model saved! (Dev Accuracy: {dev_acc:.4f})")
+    # 最終評価
+    eval_results = trainer.evaluate()
+    best_dev_accuracy = eval_results["eval_accuracy"]
     
     # 最終結果
     print(f"\n{'='*80}")
     print(f"Training completed!")
     print(f"Best Dev Accuracy: {best_dev_accuracy:.4f}")
     print(f"{'='*80}")
+
+    # 結果の保存
+    output_file = Path("output/ch10/out97.txt")
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write("Sentiment Analysis based on Embeddings Results (using Trainer)\n")
+        f.write("="*80 + "\n\n")
+        f.write(f"Model: {MODEL_NAME}\n")
+        f.write(f"Training samples: {len(train_dataset)}\n")
+        f.write(f"Dev samples: {len(dev_dataset)}\n\n")
+        f.write(f"Best Dev Accuracy: {best_dev_accuracy:.4f}\n")
+        f.write(f"Model saved to: {training_args.output_dir}\n")
+    
+    print(f"\nResults saved to: {output_file}")
 
 if __name__ == "__main__":
     main()
