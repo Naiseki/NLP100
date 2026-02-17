@@ -72,7 +72,7 @@ def main():
     model = model.to(device)
     
     # データの読み込み
-    data_path = Path("/net/nas4/data/home/kitahara/workspace/NLP100/input/SST-2/dev.tsv")
+    data_path = Path("input/SST-2/dev.tsv")
     print(f"\nLoading data from: {data_path}")
     sentences, labels = load_sst2_dev_data(data_path)
     print(f"Total samples: {len(sentences)}")
